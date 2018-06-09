@@ -1,15 +1,17 @@
 #include <iostream>
-#include <time.h>
 
-#include <SFML/Graphics.hpp>
+#include "SFML/Graphics.hpp"
+#include "SFML/System/Clock.hpp"
 
-#include "Camera.h"
+#include "graphics/Camera.h"
 
 sf::RenderWindow window;
 Camera camera;
 
 int main()
 {
+	std::cout << "Colony Started!\n";
+	
 	unsigned short fps = 60;
 	
 	window.create(sf::VideoMode(640, 400), "Colony");
@@ -19,14 +21,12 @@ int main()
 
 	std::string file = "res/maps/pangea.png";
 	sf::Texture mapTex;
-	if (!mapTex.loadFromFile(file))
-	{
-		std::cout << "Map not loaded!\n";
-	}
+	if (!mapTex.loadFromFile(file)) std::cout << "Map not loaded!\n";
+	else "Map Loaded!\n";
 
 	sf::Sprite map(mapTex);
 
-	auto time = clock();
+	sf::Clock clock;
 
 	while (window.isOpen())
 	{
@@ -41,10 +41,12 @@ int main()
 
 			}
 		}
+
 		//Update ticks
-		if (clock() - time >= CLOCKS_PER_SEC / (float)fps)
+		if (clock.getElapsedTime().asSeconds() >= 1.0f / fps)
 		{
 			camera.update();
+			clock.restart();
 		}
 
 		//Render ticks

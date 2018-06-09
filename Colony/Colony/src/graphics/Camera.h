@@ -6,10 +6,11 @@
 class Camera
 {
 private:
-	float m_Zoom, m_MoveSpeed, m_ZoomSpeed;
-	sf::View camera;
-	sf::RenderWindow* window;
+	float m_Zoom = 1.0f, m_MoveSpeed = 3.0f, m_ZoomSpeed = 0.01f;
+	sf::View m_camera;
+	sf::RenderWindow* m_window;
 public:
+	Camera();
 	Camera(sf::RenderWindow* window);
 	void update();
 	void setWindow(sf::RenderWindow* window);

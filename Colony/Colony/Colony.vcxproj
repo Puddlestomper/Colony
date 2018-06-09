@@ -19,11 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Camera.cpp" />
+    <ClCompile Include="src\Cell.cpp" />
+    <ClCompile Include="src\CellMap.cpp" />
+    <ClCompile Include="src\graphics\Camera.cpp" />
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Camera.h" />
+    <ClInclude Include="src\Cell.h" />
+    <ClInclude Include="src\CellMap.h" />
+    <ClInclude Include="src\graphics\Camera.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
