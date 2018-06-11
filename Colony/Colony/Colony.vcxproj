@@ -21,12 +21,16 @@
   <ItemGroup>
     <ClCompile Include="src\Cell.cpp" />
     <ClCompile Include="src\CellMap.cpp" />
+    <ClCompile Include="src\game\Ant.cpp" />
+    <ClCompile Include="src\game\AntColony.cpp" />
     <ClCompile Include="src\graphics\Camera.cpp" />
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Cell.h" />
     <ClInclude Include="src\CellMap.h" />
+    <ClInclude Include="src\game\Ant.h" />
+    <ClInclude Include="src\game\AntColony.h" />
     <ClInclude Include="src\graphics\Camera.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

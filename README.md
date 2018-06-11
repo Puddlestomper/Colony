@@ -1,2 +1,2 @@
 # Colony
-An RTS and Cellular Automata crossover
+A Strategy/Cellular Automata crossover

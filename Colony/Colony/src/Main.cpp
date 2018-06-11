@@ -4,6 +4,7 @@
 #include "SFML/System/Clock.hpp"
 
 #include "graphics/Camera.h"
+#include "game/AntColony.h"
 
 sf::RenderWindow window;
 Camera camera;
@@ -15,7 +16,7 @@ int main()
 	unsigned short fps = 60;
 	
 	window.create(sf::VideoMode(640, 400), "Colony");
-	//window.setFramerateLimit(fps);
+	window.setFramerateLimit(fps);
 
 	camera = Camera(&window);
 
@@ -25,6 +26,8 @@ int main()
 	else "Map Loaded!\n";
 
 	sf::Sprite map(mapTex);
+
+	AntColony colony(sf::Color::Red, sf::Vector2f(380, 170));
 
 	sf::Clock clock;
 
@@ -53,6 +56,7 @@ int main()
 		window.clear();
 		
 		window.draw(map);
+		window.draw(colony);
 
 		window.display();
 	}
