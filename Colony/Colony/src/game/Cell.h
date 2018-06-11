@@ -8,11 +8,12 @@ class Cell
 {
 private:
 	const sf::Color m_colour;
+	const bool m_solid;
 public:
-	Cell();
-	Cell(sf::Color colour);
-	sf::Color getColour() const;
-	
+	Cell(sf::Color colour, bool solid = true);
+	const sf::Color getColour() const;
+	const bool isSolid() const;
+
 	bool operator== (const Cell& rhs) const;
 
 	static const Cell& getCell(const sf::Color& colour);

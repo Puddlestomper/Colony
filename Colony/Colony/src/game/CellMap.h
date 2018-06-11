@@ -16,7 +16,7 @@ private:
 	sf::Texture m_mapTex;
 public:
 	CellMap(const sf::Image& map);
-	//member functions
+	const Cell& cellAt(sf::Vector2u point) const;
 private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };

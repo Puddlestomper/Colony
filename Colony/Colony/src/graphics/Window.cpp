@@ -2,7 +2,7 @@
 
 #include "SFML/Window/Event.hpp"
 
-Window::Window(Frame frame, sf::String name, unsigned short fps)
+Window::Window(Frame& frame, sf::String name, unsigned short fps)
 	: sf::RenderWindow(sf::VideoMode(frame.getWidth(), frame.getHeight()), name), m_fps(fps), m_camera(this), m_frame(frame)
 {
 	setActive(false);
@@ -13,7 +13,8 @@ const Frame& Window::getFrame() const { return m_frame; }
 
 void Window::addToDraw(sf::Drawable* drawable, unsigned int order)
 {
-	m_toDraws.push_back(drawable); //Need to implement order parameter
+	if (order >= m_toDraws.size()) m_toDraws.push_back(drawable);	
+	else m_toDraws.insert(m_toDraws.begin() + order, drawable);
 }
 
 void Window::start()

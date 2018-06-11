@@ -6,22 +6,37 @@
 
 unsigned int AntColony::STARTNUM = 25;
 
-AntColony::AntColony(const sf::Color& colonyColour, sf::Vector2f startPoint)
-	: m_colonyColour(colonyColour), m_queen(this, startPoint), m_points(sf::Points, STARTNUM + 1)
+AntColony::AntColony(const CellMap* map, const sf::Color& colonyColour, sf::Vector2u startPoint)
+	: m_map(map), m_colonyColour(colonyColour), m_queen(this, startPoint), m_points(sf::Quads, 4 * (STARTNUM + 1))
 {
 	m_workers.reserve(STARTNUM);
 	
-	m_points[0].position = m_queen.getPosition();
+	m_points[0].position = sf::Vector2f(m_queen.getPosition().x, m_queen.getPosition().y);
+	m_points[1].position = sf::Vector2f(m_queen.getPosition().x + 1, m_queen.getPosition().y);
+	m_points[2].position = sf::Vector2f(m_queen.getPosition().x + 1, m_queen.getPosition().y + 1);
+	m_points[3].position = sf::Vector2f(m_queen.getPosition().x, m_queen.getPosition().y + 1);
 	m_points[0].color = colonyColour;
+	m_points[1].color = colonyColour;
+	m_points[2].color = colonyColour;
+	m_points[3].color = colonyColour;
 	
 	srand(startPoint.x * startPoint.y);
 
-	for (unsigned int i = 0; i < STARTNUM; i++)
+	for (unsigned int i = 1; i < STARTNUM + 1; i++)
 	{
-		sf::Vector2f workerStart(startPoint.x + rand() % (2 * STARTNUM + 1) - STARTNUM, startPoint.y + rand() % (2 * STARTNUM + 1) - STARTNUM);
+		sf::Vector2u workerStart;
+		do workerStart = sf::Vector2u(startPoint.x + rand() % (2 * STARTNUM + 1) - STARTNUM, startPoint.y + rand() % (2 * STARTNUM + 1) - STARTNUM);
+		while (!map->cellAt(workerStart).isSolid());
+
 		m_workers.emplace_back(this, workerStart);
-		m_points[i + 1].position = m_workers[i].getPosition();
-		m_points[i + 1].color = colonyColour;
+		m_points[4 * i].position = sf::Vector2f(m_workers[i - 1].getPosition().x, m_workers[i - 1].getPosition().y);
+		m_points[4 * i + 1].position = sf::Vector2f(m_workers[i - 1].getPosition().x + 1, m_workers[i - 1].getPosition().y);
+		m_points[4 * i + 2].position = sf::Vector2f(m_workers[i - 1].getPosition().x + 1, m_workers[i - 1].getPosition().y + 1);
+		m_points[4 * i + 3].position = sf::Vector2f(m_workers[i - 1].getPosition().x, m_workers[i - 1].getPosition().y + 1);
+		m_points[4 * i].color = colonyColour;
+		m_points[4 * i + 1].color = colonyColour;
+		m_points[4 * i + 2].color = colonyColour;
+		m_points[4 * i + 3].color = colonyColour;
 	}
 }
 

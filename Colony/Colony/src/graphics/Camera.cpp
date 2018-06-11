@@ -9,10 +9,10 @@ Camera::Camera(Window* window)
 
 void Camera::update()
 {	
-	//Handle zooming: TODO: Make custom zoom method
+	//Handle Zooming
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::I))
 	{
-		if (m_zoom >= 0.26f)
+		if (m_zoom >= 0.11f)
 		{
 			m_zoom -= m_zoomSpeed;
 			m_camera.setSize((int)(m_window->getFrame().getWidth() * m_zoom), (int)(m_window->getFrame().getHeight() * m_zoom));

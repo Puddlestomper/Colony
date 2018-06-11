@@ -7,10 +7,12 @@
 #include "SFML/Graphics/VertexArray.hpp"
 
 #include "Ant.h"
+#include "CellMap.h"
 
 class AntColony : public sf::Drawable
 {
 private:
+	const CellMap* m_map;
 	const sf::Color m_colonyColour;
 	const Ant m_queen;
 	std::vector<Ant> m_workers;
@@ -18,7 +20,7 @@ private:
 public:
 	static unsigned int STARTNUM;
 
-	AntColony(const sf::Color& colonyColour, sf::Vector2f startPoint);
+	AntColony(const CellMap* map, const sf::Color& colonyColour, sf::Vector2u startPoint);
 	const sf::Color& getTeamColour() const;
 	const Ant& getQueen() const;
 private:

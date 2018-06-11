@@ -36,7 +36,7 @@
     <ClCompile Include="src\game\Cell.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\CellMap.cpp">
+    <ClCompile Include="src\game\CellMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,7 +59,7 @@
     <ClInclude Include="src\game\Cell.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\CellMap.h">
+    <ClInclude Include="src\game\CellMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

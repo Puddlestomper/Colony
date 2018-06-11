@@ -8,11 +8,11 @@ class Ant
 {
 private:
 	const AntColony* m_colony;
-	sf::Vector2f m_position;
+	sf::Vector2u m_position;
 public:
 	Ant(const AntColony* colony);
-	Ant(const AntColony* colony, const sf::Vector2f position);
-	const sf::Vector2f getPosition() const;
+	Ant(const AntColony* colony, const sf::Vector2u position);
+	const sf::Vector2u getPosition() const;
 	int getDistanceFromQueen() const;
 };
 

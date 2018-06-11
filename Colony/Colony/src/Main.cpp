@@ -5,7 +5,7 @@
 
 #include "graphics/Window.h"
 #include "game/AntColony.h"
-#include "CellMap.h"
+#include "game/CellMap.h"
 
 int main()
 {
@@ -20,10 +20,13 @@ int main()
 
 	Window window(map, "Colony");
 	
-	AntColony colony(sf::Color::Red, sf::Vector2f(380, 170));
-
-	window.addToDraw(&map);
-	window.addToDraw(&colony);
+	AntColony redColony(&map, sf::Color::Red, sf::Vector2u(380, 170));
+	AntColony magColony(&map, sf::Color::Magenta, sf::Vector2u(394, 264));
+	AntColony cyaColony(&map, sf::Color::Cyan, sf::Vector2u(135, 145));
+	
+	window.addToDraw(&redColony);
+	window.addToDraw(&magColony);
+	window.addToDraw(&cyaColony);
 
 	window.start();
 

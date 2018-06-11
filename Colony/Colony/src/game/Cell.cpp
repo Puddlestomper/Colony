@@ -1,14 +1,14 @@
 #include "Cell.h"
 
-Cell::Cell() {}
-
-Cell::Cell(sf::Color colour)
-	: m_colour(colour)
+Cell::Cell(sf::Color colour, bool solid)
+	: m_colour(colour), m_solid(solid)
 {
 
 }
 
-sf::Color Cell::getColour() const { return m_colour; }
+const sf::Color Cell::getColour() const { return m_colour; }
+
+const bool Cell::isSolid() const { return m_solid; }
 
 bool Cell::operator== (const Cell& rhs) const
 {

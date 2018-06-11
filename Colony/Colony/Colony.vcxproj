@@ -19,20 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\CellMap.cpp" />
     <ClCompile Include="src\game\Ant.cpp" />
     <ClCompile Include="src\game\AntColony.cpp" />
     <ClCompile Include="src\game\Cell.cpp" />
+    <ClCompile Include="src\game\CellMap.cpp" />
     <ClCompile Include="src\graphics\Camera.cpp" />
     <ClCompile Include="src\graphics\Frame.cpp" />
     <ClCompile Include="src\graphics\Window.cpp" />
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\CellMap.h" />
     <ClInclude Include="src\game\Ant.h" />
     <ClInclude Include="src\game\AntColony.h" />
     <ClInclude Include="src\game\Cell.h" />
+    <ClInclude Include="src\game\CellMap.h" />
     <ClInclude Include="src\graphics\Camera.h" />
     <ClInclude Include="src\graphics\Frame.h" />
     <ClInclude Include="src\graphics\Window.h" />
@@ -97,7 +97,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Coding\Libraries\SFML\v2.5.0\Visual C++ 15\SFML-2.5.0\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Coding\Libraries\SFML\v2.5.0\Visual C++ 15\SFML-2.5.0\include;C:\Coding\Colony\Colony\Colony\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -119,7 +119,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Coding\Libraries\SFML\v2.5.0\Visual C++ 15\SFML-2.5.0\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Coding\Libraries\SFML\v2.5.0\Visual C++ 15\SFML-2.5.0\include;C:\Coding\Colony\Colony\Colony\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
