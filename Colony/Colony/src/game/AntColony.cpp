@@ -16,7 +16,7 @@ AntColony::AntColony(const sf::Color& colonyColour, sf::Vector2f startPoint)
 	
 	srand(startPoint.x * startPoint.y);
 
-	for (int i = 0; i < STARTNUM; i++)
+	for (unsigned int i = 0; i < STARTNUM; i++)
 	{
 		sf::Vector2f workerStart(startPoint.x + rand() % (2 * STARTNUM + 1) - STARTNUM, startPoint.y + rand() % (2 * STARTNUM + 1) - STARTNUM);
 		m_workers.emplace_back(this, workerStart);

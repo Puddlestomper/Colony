@@ -21,6 +21,6 @@ public:
 	AntColony(const sf::Color& colonyColour, sf::Vector2f startPoint);
 	const sf::Color& getTeamColour() const;
 	const Ant& getQueen() const;
-
+private:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };

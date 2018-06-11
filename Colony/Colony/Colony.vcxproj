@@ -19,19 +19,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Cell.cpp" />
     <ClCompile Include="src\CellMap.cpp" />
     <ClCompile Include="src\game\Ant.cpp" />
     <ClCompile Include="src\game\AntColony.cpp" />
+    <ClCompile Include="src\game\Cell.cpp" />
     <ClCompile Include="src\graphics\Camera.cpp" />
+    <ClCompile Include="src\graphics\Frame.cpp" />
+    <ClCompile Include="src\graphics\Window.cpp" />
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Cell.h" />
     <ClInclude Include="src\CellMap.h" />
     <ClInclude Include="src\game\Ant.h" />
     <ClInclude Include="src\game\AntColony.h" />
+    <ClInclude Include="src\game\Cell.h" />
     <ClInclude Include="src\graphics\Camera.h" />
+    <ClInclude Include="src\graphics\Frame.h" />
+    <ClInclude Include="src\graphics\Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\maps\pangea.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
