@@ -16,7 +16,7 @@ int main()
 	if (!mapImage.loadFromFile(file)) std::cout << "Map not loaded!\n";
 	else "Map Loaded!\n";
 
-	CellMap map(mapImage);
+	CellMap map(mapImage, true);
 
 	Window window(map, "Colony");
 	

@@ -5,8 +5,8 @@
 Window::Window(Frame& frame, sf::String name, unsigned short fps)
 	: sf::RenderWindow(sf::VideoMode(frame.getWidth(), frame.getHeight()), name), m_fps(fps), m_camera(this), m_frame(frame)
 {
-	setActive(false);
 	setFramerateLimit(fps);
+	setActive(false);
 }
 
 const Frame& Window::getFrame() const { return m_frame; }

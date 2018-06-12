@@ -4,7 +4,7 @@
 
 #include "Window.h"
 
-Camera::Camera(Window* window)
+Camera::Camera(Window* const window)
 	: m_camera(window->getDefaultView()), m_window(window) {}
 
 void Camera::update()

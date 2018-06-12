@@ -7,13 +7,23 @@ class AntColony;
 class Ant
 {
 private:
-	const AntColony* m_colony;
+	AntColony* const m_colony;
 	sf::Vector2u m_position;
+	const unsigned int m_index;
 public:
-	Ant(const AntColony* colony);
-	Ant(const AntColony* colony, const sf::Vector2u position);
-	const sf::Vector2u getPosition() const;
+	enum class AntMove
+	{
+		Up, Right, Down, Left
+	};
+
+	Ant(AntColony* const colony, unsigned int index);
+	Ant(AntColony* const colony, const sf::Vector2u position, unsigned int index);
+
+	const sf::Vector2u& getPosition() const;
 	int getDistanceFromQueen() const;
+
+	void move(AntMove m);
+	//void update();
 };
 
 //Ants should always have vision of home base

@@ -5,7 +5,7 @@
 class Frame : public sf::Drawable
 {
 protected:
-	unsigned int m_width, m_height;
+	const unsigned int m_width, m_height;
 public:
 	Frame(unsigned int width, unsigned int height);
 	unsigned int getWidth() const;

@@ -99,6 +99,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>C:\Coding\Libraries\SFML\v2.5.0\Visual C++ 15\SFML-2.5.0\include;C:\Coding\Colony\Colony\Colony\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>C:\Coding\Libraries\SFML\v2.5.0\Visual C++ 15\SFML-2.5.0\lib</AdditionalLibraryDirectories>
@@ -121,6 +122,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>C:\Coding\Libraries\SFML\v2.5.0\Visual C++ 15\SFML-2.5.0\include;C:\Coding\Colony\Colony\Colony\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
