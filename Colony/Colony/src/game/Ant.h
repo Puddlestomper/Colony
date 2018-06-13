@@ -2,12 +2,14 @@
 
 #include "SFML/System/Vector2.hpp"
 
+#include "Updatable.h"
+
 class AntColony;
 
-class Ant
+class Ant : public Updatable
 {
 private:
-	AntColony* const m_colony;
+	AntColony* m_colony;
 	sf::Vector2u m_position;
 	const unsigned int m_index;
 public:
@@ -18,12 +20,14 @@ public:
 
 	Ant(AntColony* const colony, unsigned int index);
 	Ant(AntColony* const colony, const sf::Vector2u position, unsigned int index);
+	//Ant(const Ant& ant);
 
 	const sf::Vector2u& getPosition() const;
 	int getDistanceFromQueen() const;
 
 	void move(AntMove m);
-	//void update();
+	void update(unsigned long ticks);
+	void updateColony(AntColony* colony);
 };
 
 //Ants should always have vision of home base

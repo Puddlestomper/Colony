@@ -6,7 +6,7 @@
 #include "SFML/Graphics/Sprite.hpp"
 
 CellMap::CellMap(const sf::Image& map, bool warp)
-	: Frame(map.getSize().x, map.getSize().y), m_mapData(m_width * m_height), m_warp(warp), m_mapTex()
+	: Frame(map.getSize().x, map.getSize().y), m_mapData(m_width * m_height), m_warp(warp), m_mapTex(), m_antData(m_width * m_height, false)
 {	
 	if(!m_mapTex.loadFromImage(map)) std::cout << "CellMap Texture Load Failed!\n";
 	
@@ -30,6 +30,11 @@ CellMap::CellMap(const sf::Image& map, bool warp)
 const Cell& CellMap::cellAt(const sf::Vector2u& point) const
 {
 	return m_cells[m_mapData[point.x + point.y * m_width]];
+}
+
+const bool& CellMap::antAt(const sf::Vector2u& point) const
+{
+	return m_antData[point.x + point.y * m_width];
 }
 
 const std::optional<sf::Vector2u> CellMap::upOf(const sf::Vector2u& point) const
@@ -60,10 +65,26 @@ const std::optional<sf::Vector2u> CellMap::rightOf(const sf::Vector2u& point) co
 	return sf::Vector2u(point.x + 1, point.y);
 }
 
+void CellMap::addColony(const sf::Color& colonyColour, sf::Vector2u startPoint)
+{
+	m_colonies.emplace_back(this, colonyColour, startPoint);
+}
+
+void CellMap::update(unsigned long ticks)
+{
+	for (AntColony& c : m_colonies) c.update(ticks);
+}
+
+void CellMap::antIsAt(const sf::Vector2u& point) { m_antData[point.x + point.y * m_width] = true; }
+
+void CellMap::antNotAt(const sf::Vector2u& point) { m_antData[point.x + point.y * m_width] = false; }
+
 void CellMap::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	//Implement making a vertex array and drawing from that instead of from the texture
 	//(so that empty cells are drawn white)
 	sf::Sprite sprite(m_mapTex);
 	target.draw(sprite, states);
+
+	for (const AntColony& c : m_colonies) target.draw(c, states);
 }

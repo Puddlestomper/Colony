@@ -12,18 +12,30 @@ void Camera::update()
 	//Handle Zooming
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::I))
 	{
-		if (m_zoom >= 0.11f)
+		if (m_zoom >= 0.10f + m_zoomSpeed)
 		{
 			m_zoom -= m_zoomSpeed;
+			m_camera.setSize((int)(m_window->getFrame().getWidth() * m_zoom), (int)(m_window->getFrame().getHeight() * m_zoom));
+			m_window->setView(m_camera);
+		}
+		else if (m_zoom > 0.10f)
+		{
+			m_zoom = 0.10f;
 			m_camera.setSize((int)(m_window->getFrame().getWidth() * m_zoom), (int)(m_window->getFrame().getHeight() * m_zoom));
 			m_window->setView(m_camera);
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::O))
 	{
-		if (m_zoom <= 0.99f)
+		if (m_zoom <= 1.0f - m_zoomSpeed)
 		{
 			m_zoom += m_zoomSpeed;
+			m_camera.setSize((int)(m_window->getFrame().getWidth() * m_zoom), (int)(m_window->getFrame().getHeight() * m_zoom));
+			m_window->setView(m_camera);
+		}
+		else if (m_zoom < 1.0f)
+		{
+			m_zoom = 1.0f;
 			m_camera.setSize((int)(m_window->getFrame().getWidth() * m_zoom), (int)(m_window->getFrame().getHeight() * m_zoom));
 			m_window->setView(m_camera);
 		}

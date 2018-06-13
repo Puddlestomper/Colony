@@ -1,9 +1,14 @@
 #include "Window.h"
 
+#include <iostream>
+#include <time.h>
+
 #include "SFML/Window/Event.hpp"
 
-Window::Window(Frame& frame, sf::String name, unsigned short fps)
-	: sf::RenderWindow(sf::VideoMode(frame.getWidth(), frame.getHeight()), name), m_fps(fps), m_camera(this), m_frame(frame)
+#include "game/Updatable.h"
+
+Window::Window(Frame& frame, sf::String name, unsigned short fps, unsigned short ups)
+	: sf::RenderWindow(sf::VideoMode(frame.getWidth(), frame.getHeight()), name), m_fps(fps), m_ups(ups), m_camera(this), m_frame(frame)
 {
 	setFramerateLimit(fps);
 	setActive(false);
@@ -13,15 +18,22 @@ const Frame& Window::getFrame() const { return m_frame; }
 
 void Window::addToDraw(sf::Drawable* drawable, unsigned int order)
 {
-	if (order >= m_toDraws.size()) m_toDraws.push_back(drawable);	
-	else m_toDraws.insert(m_toDraws.begin() + order, drawable);
+	if (order >= m_toDraw.size()) m_toDraw.push_back(drawable);	
+	else m_toDraw.insert(m_toDraw.begin() + order, drawable);
+}
+
+void Window::addToUpdate(Updatable* updatable, unsigned int order)
+{
+	if (order >= m_toUpdate.size()) m_toUpdate.push_back(updatable);
+	else m_toUpdate.insert(m_toUpdate.begin() + order, updatable);
 }
 
 void Window::start()
 {
 	setActive(true);
 
-	sf::Clock clock;
+	clock_t time = std::clock();
+	unsigned long ticks = 0;
 
 	while (isOpen())
 	{
@@ -38,17 +50,21 @@ void Window::start()
 		}
 
 		//Update ticks
-		if (clock.getElapsedTime().asSeconds() >= 1.0f / m_fps)
+		if (std::clock() - time >= CLOCKS_PER_SEC / m_ups)
 		{
+			time = std::clock();
+
 			m_camera.update();
-			clock.restart();
+			for (Updatable* u : m_toUpdate) u->update(ticks);
+
+			ticks++;
 		}
 
 		//Render ticks
 		clear();
 
 		draw(m_frame);
-		for (sf::Drawable* d : m_toDraws) draw(*d);
+		for (sf::Drawable* d : m_toDraw) draw(*d);
 
 		display();
 	}

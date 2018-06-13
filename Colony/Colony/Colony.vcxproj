@@ -33,6 +33,7 @@
     <ClInclude Include="src\game\AntColony.h" />
     <ClInclude Include="src\game\Cell.h" />
     <ClInclude Include="src\game\CellMap.h" />
+    <ClInclude Include="src\game\Updatable.h" />
     <ClInclude Include="src\graphics\Camera.h" />
     <ClInclude Include="src\graphics\Frame.h" />
     <ClInclude Include="src\graphics\Window.h" />

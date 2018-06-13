@@ -19,14 +19,11 @@ int main()
 	CellMap map(mapImage, true);
 
 	Window window(map, "Colony");
-	
-	AntColony redColony(&map, sf::Color::Red, sf::Vector2u(380, 170));
-	AntColony magColony(&map, sf::Color::Magenta, sf::Vector2u(394, 264));
-	AntColony cyaColony(&map, sf::Color::Cyan, sf::Vector2u(135, 145));
-	
-	window.addToDraw(&redColony);
-	window.addToDraw(&magColony);
-	window.addToDraw(&cyaColony);
+	window.addToUpdate(&map);
+
+	map.addColony(sf::Color::Red, sf::Vector2u(380, 170));
+	map.addColony(sf::Color::Magenta, sf::Vector2u(394, 264));
+	map.addColony(sf::Color::Cyan, sf::Vector2u(135, 145));
 
 	window.start();
 

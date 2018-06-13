@@ -62,6 +62,9 @@
     <ClInclude Include="src\game\CellMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\game\Updatable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\maps\pangea.png">
