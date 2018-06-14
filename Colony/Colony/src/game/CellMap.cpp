@@ -5,7 +5,7 @@
 #include "SFML/Graphics/RenderTarget.hpp"
 #include "SFML/Graphics/Sprite.hpp"
 
-CellMap::CellMap(const sf::Image& map, bool warp)
+CellMap::CellMap(const sf::Image& map, const bool& warp)
 	: Frame(map.getSize().x, map.getSize().y), m_mapData(m_width * m_height), m_warp(warp), m_mapTex(), m_antData(m_width * m_height, false)
 {	
 	if(!m_mapTex.loadFromImage(map)) std::cout << "CellMap Texture Load Failed!\n";
@@ -17,7 +17,7 @@ CellMap::CellMap(const sf::Image& map, bool warp)
 		Cell cell = Cell::getCell(sf::Color(pixels[i], pixels[i + 1], pixels[i + 2], pixels[i + 3])); //Get cell from colour
 		if (cell == Cell::EMPTY)
 		{
-			std::cout << "Empty Cell Found At " << i << "!\n";
+			std::cout << "Empty Cell Found At " << (i/4) % m_width << ", " << (i/4) / m_width << "!\n";
 			std::cout << "RGBA: " << (int)pixels[i] << ", " << (int)pixels[i + 1] << ", " << (int)pixels[i + 2] << ", " << (int)pixels[i + 3] << "\n";
 		}
 		unsigned char j;
@@ -32,7 +32,7 @@ const Cell& CellMap::cellAt(const sf::Vector2u& point) const
 	return m_cells[m_mapData[point.x + point.y * m_width]];
 }
 
-const bool& CellMap::antAt(const sf::Vector2u& point) const
+const unsigned int& CellMap::antAt(const sf::Vector2u& point) const
 {
 	return m_antData[point.x + point.y * m_width];
 }
@@ -67,17 +67,17 @@ const std::optional<sf::Vector2u> CellMap::rightOf(const sf::Vector2u& point) co
 
 void CellMap::addColony(const sf::Color& colonyColour, sf::Vector2u startPoint)
 {
-	m_colonies.emplace_back(this, colonyColour, startPoint);
+	m_colonies.emplace_back(this, m_colonies.size(), colonyColour, startPoint);
 }
 
-void CellMap::update(unsigned long ticks)
+void CellMap::update(const unsigned long& ticks)
 {
 	for (AntColony& c : m_colonies) c.update(ticks);
 }
 
-void CellMap::antIsAt(const sf::Vector2u& point) { m_antData[point.x + point.y * m_width] = true; }
+void CellMap::antIsAt(const sf::Vector2u& point, const unsigned int colony) { m_antData[point.x + point.y * m_width] = colony + 1; }
 
-void CellMap::antNotAt(const sf::Vector2u& point) { m_antData[point.x + point.y * m_width] = false; }
+void CellMap::antNotAt(const sf::Vector2u& point) { m_antData[point.x + point.y * m_width] = 0; }
 
 void CellMap::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {

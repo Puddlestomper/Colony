@@ -21,13 +21,15 @@ public:
 	Ant(AntColony* const colony, unsigned int index);
 	Ant(AntColony* const colony, const sf::Vector2u position, unsigned int index);
 	//Ant(const Ant& ant);
+	//~Ant();
 
-	const sf::Vector2u& getPosition() const;
+	inline const sf::Vector2u& getPosition() const { return m_position; }
 	int getDistanceFromQueen() const;
 
-	void move(AntMove m);
-	void update(unsigned long ticks);
-	void updateColony(AntColony* colony);
+	void move(const AntMove& m);
+	void update(const unsigned long& ticks);
+	inline void updateColony(AntColony* colony) { m_colony = colony; }
+	void setPosition(const sf::Vector2u& point);
 };
 
 //Ants should always have vision of home base

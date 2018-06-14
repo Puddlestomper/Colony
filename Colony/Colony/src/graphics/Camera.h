@@ -12,5 +12,6 @@ private:
 	Window* const m_window;
 public:
 	Camera(Window* const window);
+
 	void update();
 };

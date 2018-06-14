@@ -10,13 +10,13 @@
 Ant::Ant(AntColony* const colony, unsigned int index)
 	: m_colony(colony), m_position(colony->getQueen().getPosition()), m_index(index) 
 {
-	m_colony->getMap()->antIsAt(m_position);
+	m_colony->getMap()->antIsAt(m_position, m_colony->getIndex());
 }
 
 Ant::Ant(AntColony* const colony, const sf::Vector2u position, unsigned int index)
 	: m_colony(colony), m_position(position), m_index(index)
 {
-	m_colony->getMap()->antIsAt(m_position);
+	m_colony->getMap()->antIsAt(m_position, m_colony->getIndex());
 }
 
 /*
@@ -26,7 +26,11 @@ Ant::Ant(const Ant& ant)
 	
 }*/
 
-const sf::Vector2u& Ant::getPosition() const { return m_position; }
+/*
+Ant::~Ant()
+{
+	
+}*/
 
 int Ant::getDistanceFromQueen() const
 {
@@ -34,9 +38,7 @@ int Ant::getDistanceFromQueen() const
 	return abs((int)(m_position.x - queenPos.x)) + abs((int)(m_position.y - queenPos.y));
 }
 
-//Have move check if new cell is occupied
-
-void Ant::move(AntMove m)
+void Ant::move(const AntMove& m)
 {
 	std::optional<sf::Vector2u> newPos;
 	switch (m)
@@ -57,16 +59,17 @@ void Ant::move(AntMove m)
 
 	if (newPos)
 	{
-		if (m_colony->getMap()->antAt(newPos.value())) return;
+		if (m_colony->getMap()->antAt(newPos.value()) > 0) return;
 
 		m_colony->getMap()->antNotAt(m_position);
 		m_position = newPos.value();
 		m_colony->updateAntPosition(m_index);
+		m_colony->getMap()->antIsAt(m_position, m_colony->getIndex());
 	}
 
 }
 
-void Ant::update(unsigned long ticks)
+void Ant::update(const unsigned long& ticks)
 {
 	if (ticks % 30 == 0)
 	{
@@ -75,4 +78,8 @@ void Ant::update(unsigned long ticks)
 	}
 }
 
-void Ant::updateColony(AntColony* colony) { m_colony = colony; }
+void Ant::setPosition(const sf::Vector2u& point)
+{
+	m_position = point;
+	m_colony->updateAntPosition(m_index);
+}

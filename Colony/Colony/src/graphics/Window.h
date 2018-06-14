@@ -19,7 +19,8 @@ private:
 	std::vector<Updatable*> m_toUpdate;
 public:
 	Window(Frame& frame, sf::String name, unsigned short fps = 60, unsigned short ups = 60);
-	const Frame& getFrame() const;
+
+	inline const Frame& getFrame() const { return m_frame; }
 	
 	void addToDraw(sf::Drawable* drawable, unsigned int order = UINT_MAX); //Only specify order if you want to have it run nth
 	void addToUpdate(Updatable* updatable, unsigned int order = UINT_MAX); //Here too

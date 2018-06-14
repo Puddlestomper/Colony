@@ -6,6 +6,8 @@
 Frame::Frame(unsigned int width, unsigned int height)
 	: m_width(width), m_height(height) {}
 
+Frame::~Frame() {}
+
 unsigned int Frame::getWidth() const { return m_width; }
 
 unsigned int Frame::getHeight() const { return m_height; }

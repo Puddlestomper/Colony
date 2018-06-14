@@ -1,6 +1,5 @@
 #include "Window.h"
 
-#include <iostream>
 #include <time.h>
 
 #include "SFML/Window/Event.hpp"
@@ -13,8 +12,6 @@ Window::Window(Frame& frame, sf::String name, unsigned short fps, unsigned short
 	setFramerateLimit(fps);
 	setActive(false);
 }
-
-const Frame& Window::getFrame() const { return m_frame; }
 
 void Window::addToDraw(sf::Drawable* drawable, unsigned int order)
 {

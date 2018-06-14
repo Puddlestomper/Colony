@@ -8,6 +8,8 @@ protected:
 	const unsigned int m_width, m_height;
 public:
 	Frame(unsigned int width, unsigned int height);
+	virtual ~Frame();
+
 	unsigned int getWidth() const;
 	unsigned int getHeight() const;
 private:
